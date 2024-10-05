@@ -4,6 +4,8 @@ namespace App\Http\Request;
 
 use App\Arch\Constants\MessageConstant;
 use App\Arch\Domain\Response\BaseResponse;
+use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Nette\Schema\ValidationException;
@@ -59,9 +61,12 @@ abstract class BaseRequest {
     public function applyRules(array $rules) {
         $validator = Validator::make($this -> getAttributes(), $rules);
 
-        if($validator -> fails()) {
-            throw new ValidationException($validator, MessageConstant::BAD_DATA_REQUEST);
-        };
+        if ($validator -> fails()) {
+            throw new HttpResponseException(response() -> json([
+                'message' => 'Se ha producido un error al validar la request',
+                'data' => $validator -> errors()
+            ], Response::HTTP_BAD_REQUEST));
+        }
     }
 
 }

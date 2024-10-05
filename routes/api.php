@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Image\ImageController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,9 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('refresh', [AuthController::class, 'refresh']);
     });
 
+    Route::prefix('image')->group(function () {
+        Route::post('store', [ImageController::class, 'storeImage']);
+    });
 });
 
 Route::prefix('public')->group(function () {
