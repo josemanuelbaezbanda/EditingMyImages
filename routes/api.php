@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Image\ImageController;
+use App\Http\Controllers\Image\ImageEditController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,10 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::get('get-image', [ImageController::class, 'getImage']);
         Route::get('download-image', [ImageController::class, 'downloadImage']);
         Route::get('show-images', [ImageController::class, 'showImages']);
+
+        Route::prefix('edit')->group(function () {
+            Route::post('resize', [ImageEditController::class, 'resizeImage']);
+        });
     });
 });
 

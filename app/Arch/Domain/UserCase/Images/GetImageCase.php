@@ -34,7 +34,7 @@ class GetImageCase extends BaseUserCase implements BaseInterface {
         $finalResponse = [
             'id' => Arr::get($response, 'id'),
             'name' => Arr::get($response, 'name'),
-            'modifications' => Arr::get($response, 'modifications'),
+            'modifications' => json_decode(Arr::get($response, 'modifications')),
             'modified' => !(Arr::get($response,'modifications') == AppConstant::NULL_VALUE)
         ];
 

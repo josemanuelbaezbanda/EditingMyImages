@@ -2,13 +2,10 @@
 
 namespace App\Arch\Domain\UserCase\Auth;
 
-use App\Arch\Constants\AppConstant;
 use App\Arch\Constants\MessageConstant;
 use App\Arch\Domain\UserCase\BaseInterface;
 use App\Arch\Domain\UserCase\BaseUserCase;
-use App\Arch\Infrastructure\Auth\LoginService;
 use App\Arch\Infrastructure\Auth\LogoutService;
-use Illuminate\Support\Arr;
 
 class LogoutCase extends BaseUserCase implements BaseInterface {
 

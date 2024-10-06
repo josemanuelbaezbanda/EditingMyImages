@@ -2,13 +2,11 @@
 
 namespace App\Http\Request;
 
-use App\Arch\Constants\MessageConstant;
 use App\Arch\Domain\Response\BaseResponse;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
-use Nette\Schema\ValidationException;
 
 abstract class BaseRequest {
 

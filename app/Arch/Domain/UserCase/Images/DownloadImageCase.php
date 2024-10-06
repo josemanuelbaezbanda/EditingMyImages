@@ -2,12 +2,9 @@
 
 namespace App\Arch\Domain\UserCase\Images;
 
-use App\Arch\Constants\AppConstant;
-use App\Arch\Constants\MessageConstant;
 use App\Arch\Domain\UserCase\BaseInterface;
 use App\Arch\Domain\UserCase\BaseUserCase;
 use App\Arch\Infrastructure\Images\DownloadImageService;
-use App\Arch\Infrastructure\Images\ShowImagesService;
 use Illuminate\Support\Arr;
 
 class DownloadImageCase extends BaseUserCase implements BaseInterface {

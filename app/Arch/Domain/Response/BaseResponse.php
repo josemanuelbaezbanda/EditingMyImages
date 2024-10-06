@@ -2,8 +2,6 @@
 
 namespace App\Arch\Domain\Response;
 
-use Psy\Util\Str;
-
 class BaseResponse {
 
     //Variable que almacena el path

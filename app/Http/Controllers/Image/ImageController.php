@@ -3,9 +3,7 @@
 namespace App\Http\Controllers\Image;
 
 use App\Http\Controllers\Controller;
-use App\Http\Request\Auth\AuthRequest;
 use App\Http\Request\Image\ImageRequest;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
@@ -65,6 +63,15 @@ class ImageController extends Controller
         return $this -> getDownloadResponse($response);
     }
 
-
+    /**
+     * Subir una imagen al servidor local
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function resizeImage(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> resizeImage();
+        return $this -> getResponse($response);
+    }
 
 }

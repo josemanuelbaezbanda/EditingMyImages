@@ -3,7 +3,6 @@
 namespace App\Arch\Infrastructure\Auth;
 
 use App\Arch\Infrastructure\BaseService;
-use Illuminate\Auth;
 
 class LoginService extends BaseService{
 

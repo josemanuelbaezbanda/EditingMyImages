@@ -5,7 +5,6 @@ namespace App\Arch\Infrastructure\Images;
 use App\Arch\Infrastructure\BaseService;
 use App\Models\Image;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\DB;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class GetImagesService extends BaseService{

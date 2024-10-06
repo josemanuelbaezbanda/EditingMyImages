@@ -4,7 +4,6 @@ namespace App\Arch\Infrastructure\Auth;
 
 use App\Arch\Infrastructure\BaseService;
 use App\Models\User;
-use Illuminate\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RegisterService extends BaseService{

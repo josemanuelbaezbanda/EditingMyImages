@@ -3,15 +3,13 @@
 namespace App\Arch\Infrastructure\Images;
 
 use App\Arch\Infrastructure\BaseService;
-use App\Arch\Infrastructure\UserHelper;
+use App\Arch\Infrastructure\ImageHelper;
 use App\Models\Image;
-use App\Models\User;
-use Illuminate\Auth;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 
 class StoreImageService extends BaseService{
-    use UserHelper;
+    use ImageHelper;
 
     public function execute()
     {

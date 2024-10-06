@@ -5,7 +5,6 @@ namespace App\Arch\Domain\UserCase;
 use App\Arch\Domain\Response\BaseResponse;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Http\Request;
-use Illuminate\Auth;
 
 abstract class BaseUserCase {
 

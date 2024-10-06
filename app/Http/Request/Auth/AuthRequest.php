@@ -7,7 +7,6 @@ use App\Arch\Domain\UserCase\Auth\LoginCase;
 use App\Arch\Domain\UserCase\Auth\LogoutCase;
 use App\Arch\Domain\UserCase\Auth\RefreshCase;
 use App\Arch\Domain\UserCase\Auth\RegisterCase;
-use App\Arch\Infrastructure\Auth\RefreshService;
 use App\Http\Request\BaseRequest;
 
 class AuthRequest extends BaseRequest{

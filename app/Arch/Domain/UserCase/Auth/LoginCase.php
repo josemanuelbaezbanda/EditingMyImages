@@ -2,7 +2,6 @@
 
 namespace App\Arch\Domain\UserCase\Auth;
 
-use App\Arch\Constants\AppConstant;
 use App\Arch\Constants\MessageConstant;
 use App\Arch\Domain\UserCase\BaseInterface;
 use App\Arch\Domain\UserCase\BaseUserCase;
