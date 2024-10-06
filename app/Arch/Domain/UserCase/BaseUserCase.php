@@ -44,6 +44,16 @@ abstract class BaseUserCase {
         $this -> response -> setData($data);
     }
 
+
+    /**
+     * @param string $path
+     * @param string $filename
+     * @return void
+     */
+    public function setDownloadResponse(string $path, string $filename) : void {
+        $this -> response ->setPath($path, $filename);
+    }
+
     /**
      * @return BaseResponse
      */

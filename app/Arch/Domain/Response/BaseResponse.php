@@ -2,9 +2,13 @@
 
 namespace App\Arch\Domain\Response;
 
+use Psy\Util\Str;
+
 class BaseResponse {
 
-    //Variable para el mensajer que se envía al front
+    //Variable que almacena el path
+    private string $path = '';
+    //Variable para el mensaje que se envía al front
     private string $message = 'Petición Exitosa';
     //Variable para almacenar la data que se envia como respuesta al front
     private mixed $data = [];
@@ -27,6 +31,13 @@ class BaseResponse {
         return $this->data;
     }
 
+    /**Retorna el path de un archivo
+     * @return string
+     */
+    public function getPath(): string {
+        return $this->path;
+    }
+
     /**Asigna la información que sera enviada como respuesta
      * @param mixed $data
      * @return void
@@ -41,6 +52,15 @@ class BaseResponse {
      */
     public function setMessage(string $message): void {
         $this->message = $message;
+    }
+
+    /** Crea la ruta de un archivo
+     * @param string $path
+     * @param string $filename
+     * @return void
+     */
+    public function setPath(string $path, string $filename): void {
+        $this -> path = str_replace('/', '\\', ($path . '/'. $filename));
     }
 
 }

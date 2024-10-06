@@ -23,12 +23,13 @@ class StoreImageCase extends BaseUserCase implements BaseInterface {
     {
         $file = Arr::get($this ->getAttributes(), 'image');
         $filename = time() . '-' . $file -> getClientOriginalName();
+        $path =AppConstant::PATH_TO_IMAGES. $this -> getUser() -> name . $this -> getUser() -> getAuthIdentifier();
 
         return [
             'file' => $file,
             'filename' => $filename,
-            'name' => $file -> getClientOriginalName(),
-            'path' => AppConstant::PATH_TO_IMAGES. $this -> getUser() -> name . $this -> getUser() -> getAuthIdentifier(),
+            'name' => $filename,
+            'path' => str_replace(' ', '',$path),
             'user_id' => $this ->getUser() -> getAuthIdentifier(),
             'modifications' => AppConstant::NULL_VALUE,
             'created_by' => $this -> getUser() -> getAuthIdentifier()

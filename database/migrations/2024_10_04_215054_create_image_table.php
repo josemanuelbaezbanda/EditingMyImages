@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('path');
             $table->json('modifications')->nullable();
             $table->foreignId('user_id')->constrained('users');
+            $table->boolean('active')->default(true);
             $table->integer('created_by')->nullable();
             $table->integer('updated_by')->nullable();
             $table->integer('deleted_by')->nullable();

@@ -25,6 +25,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
     Route::prefix('image')->group(function () {
         Route::post('store', [ImageController::class, 'storeImage']);
+        Route::get('get-image', [ImageController::class, 'getImage']);
+        Route::get('download-image', [ImageController::class, 'downloadImage']);
+        Route::get('show-images', [ImageController::class, 'showImages']);
     });
 });
 

@@ -7,6 +7,7 @@ use App\Http\Request\Auth\AuthRequest;
 use App\Http\Request\Image\ImageRequest;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class ImageController extends Controller
 {
@@ -22,7 +23,7 @@ class ImageController extends Controller
     }
 
     /**
-     * Logeo del usuario al sistema
+     * Subir una imagen al servidor local
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -31,5 +32,39 @@ class ImageController extends Controller
         $response = $this -> request -> storeImage();
         return $this -> getResponse($response);
     }
+
+    /**
+     * Traer el listado de imagenes
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function showImages() {
+        $response = $this -> request -> showImages();
+        return $this -> getResponse($response);
+    }
+
+    /**
+     * Traer el imagen
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getImage(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> getImage();
+        return $this -> getResponse($response);
+    }
+
+
+    /**
+     * @param Request $args
+     * @return BinaryFileResponse
+     */
+    public function downloadImage(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> downloadImage();
+        return $this -> getDownloadResponse($response);
+    }
+
+
 
 }
