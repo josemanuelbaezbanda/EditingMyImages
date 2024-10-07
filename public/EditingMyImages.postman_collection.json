@@ -1,0 +1,523 @@
+{
+	"info": {
+		"_postman_id": "632f4dd4-fc03-4d65-9ffc-5067bb32d78c",
+		"name": "EditingMyImages",
+		"description": "Endpoints de la API para edición de imagenes usando Laravel",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21159293"
+	},
+	"item": [
+		{
+			"name": "Login",
+			"item": [
+				{
+					"name": "Login",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "email",
+									"value": "manuel121936@hotmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "123456789",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/public/login",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"public",
+								"login"
+							]
+						},
+						"description": "Logueo al sistema para obtener el token de acceso\n\n**email:** Correo de registro al sistema (Obligatorio).  \n**password:** Contraseña del sistema (Obligatorio).\n\n**return:** El token de acceso."
+					},
+					"response": []
+				},
+				{
+					"name": "Register",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "name",
+									"value": "Federico Alvarado",
+									"type": "text"
+								},
+								{
+									"key": "email",
+									"value": "Federico121936@hotmail.com",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "987654321",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/public/register",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"public",
+								"register"
+							]
+						},
+						"description": "Endpoint para el registro de usuarios al sistema\n\n**name:** Nombre de usuario (Obligatorio).  \n**email:** Correo del usuario (Obligatorio).\n\n**password:** Contraseña para ingresar (Obligatorio).\n\n**return:** La información de usuario registrado."
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3MjgwNzU4MTEsImV4cCI6MTcyODA3OTQxMSwibmJmIjoxNzI4MDc1ODExLCJqdGkiOiJiMXdrbXFsdENncnBLNktkIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.MOG3abd9U0PsLytaE3kVE-kdcFIH9CML-g9HCxscR4E",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/auth/logout",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"auth",
+								"logout"
+							]
+						},
+						"description": "Enpoint para desloguear la sesión"
+					},
+					"response": []
+				}
+			],
+			"description": "Endpoint correspondientes al modelo de login"
+		},
+		{
+			"name": "Images",
+			"item": [
+				{
+					"name": "Edit",
+					"item": [
+						{
+							"name": "Resize Image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI3NjUyNywiZXhwIjoxNzI4MjgwMTI3LCJuYmYiOjE3MjgyNzY1MjcsImp0aSI6IjB5dXVFMXFIRm8yZnc5cHUiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.RU3hFfa9AhRamMvy-Gv1xv_geiMvfR7ZZb8bl7iCzhU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : 1,\r\n    \"width\": 2000,\r\n    \"height\": 2000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/image/edit/resize",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"image",
+										"edit",
+										"resize"
+									]
+								},
+								"description": "Endpoint para redimensionar una imagen\n\n**Id:** Id de la imagen a editar (Obligatorio)\n\n**Width**: Anchura nueva para la imagen\n\n**Height:** Altura nueva para la imagen\n\n**Return:** Un Json con la información de la imagen\n\n**return:** La información de la imagen modificada y guardada en la base de datos."
+							},
+							"response": []
+						},
+						{
+							"name": "Set Filter Image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI3NjUyNywiZXhwIjoxNzI4MjgwMTI3LCJuYmYiOjE3MjgyNzY1MjcsImp0aSI6IjB5dXVFMXFIRm8yZnc5cHUiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.RU3hFfa9AhRamMvy-Gv1xv_geiMvfR7ZZb8bl7iCzhU",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : 1,\r\n    \"filter\" : 5,\r\n    \"red\": 10,\r\n    \"green\" : 10,\r\n    \"blue\" : 2,\r\n    \"pixel_level\" :10\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/image/edit/set-filter",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"image",
+										"edit",
+										"set-filter"
+									]
+								},
+								"description": "Endpoint para aplicar un filtro a la imagen\n\n**id** : Id de la imagen a la que se le agregara el filtro (Obligatorio)\n\n**filter:** Tipo de orientación para mover la imagen (Obligatorio)  \n2: Corrección de color RGB\n\n3: Negativo\n\n4: Escala de grises\n\n5: Efecto de pixeles\n\n**red:** Cantidad de corrección en rojo (Obligatorio si el filter es \"(2)\" y no se ha seleccionado \"blue\" o \"green\").\n\n**green:** Cantidad de corrección en verde (Obligatorio si el filter es \"(2)\" y no se ha seleccionado \"blue\" o \"red\")\n\n**blue:** Cantidad de corrección en azul (Obligatorio si el filter es \"(2)\" y no se ha seleccionado \"red\" o \"green\")\n\n**pixel_level:** Nivel de pixelización (Obligatorio si el filter es \"(5)\")\n\n**return:** La información de la imagen modificada y guardada en la base de datos."
+							},
+							"response": []
+						},
+						{
+							"name": "Move Image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI3MzE4MiwiZXhwIjoxNzI4Mjc2NzgyLCJuYmYiOjE3MjgyNzMxODIsImp0aSI6IkZhT1hOb0pvM3J0WlFMQ3UiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.d63U2LzFN1cW-sPBaIx6mRsaMeOnHrD611eDWnErvqQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n   \"id\" : 1,\r\n    \"filter\" : 7,\r\n    \"rotation\" : 45\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/image/edit/set-text",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"image",
+										"edit",
+										"set-text"
+									]
+								},
+								"description": "Endpoint para mover la orientación de una imagen\n\n**id** : Id de la imagen a la que se le cambiara la orientación (Obligatorio)\n\n**filter:** Tipo de orientación para mover la imagen (Obligatorio)  \n6: Moviento de espejo Horizontal\n\n7: Movimiento de espejo Vertical\n\n8: Rotación\n\n**rotation:** Angulo con el que se movera la imagen (Obligatorio si el filter es \"(8)\"\n\n**return:** La información de la imagen modificada y guardada en la base de datos."
+							},
+							"response": []
+						},
+						{
+							"name": "Set Text Image",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI3MzE4MiwiZXhwIjoxNzI4Mjc2NzgyLCJuYmYiOjE3MjgyNzMxODIsImp0aSI6IkZhT1hOb0pvM3J0WlFMQ3UiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.d63U2LzFN1cW-sPBaIx6mRsaMeOnHrD611eDWnErvqQ",
+											"type": "string"
+										}
+									]
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"id\" : 1,\r\n    \"text\" : \"WednesdayXTyler\",\r\n    \"x_location\" : 2000,\r\n    \"y_location\" : 2000,\r\n    \"size\" : 60,\r\n    \"color\" : \"fff\",\r\n    \"stroke\" : \"000000\",\r\n    \"line_height\" : 5\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://127.0.0.1:8000/api/image/edit/set-text",
+									"protocol": "http",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "8000",
+									"path": [
+										"api",
+										"image",
+										"edit",
+										"set-text"
+									]
+								},
+								"description": "Endpoint para guardar el texto de una imagen\n\n**id** : Id de la imagen a la que se le agregara el texto (Obligatorio)\n\n**text:** Texto a agregar a la imagen (Obligatorio)\n\n**x_location :** Localización en X, dentro de la imagen, donde ira el texto (Obligatorio)\n\n**y_location:** Localización en Y, dentro de la imagen, donde ira el texto (Obligatorio)\n\n**size:** Tamaño de la fuente de a letra (Obligatorio)\n\n**color:** Color de la fuente de a letra (Obligatorio)\n\n**stroke:** Tamaño de la fuente del contorno de la letra\n\n**line_height:** Tamaño deel contorno de la fuente de a letra\n\n**return:** La información de la imagen modificada y guardada en la base de datos."
+							},
+							"response": []
+						}
+					],
+					"description": "Modulo de edición de imagenes"
+				},
+				{
+					"name": "Store Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODA5MzkwMCwiZXhwIjoxNzI4MDk3NTAwLCJuYmYiOjE3MjgwOTM5MDAsImp0aSI6Im5MYm0xT1YwcFdvbTY3bFciLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.71VKuutuF1OdQHObkgRiXWrRzx5wiu7MrnuBRZUcTa0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "image",
+									"type": "file",
+									"src": "/C:/Users/EL PEPE XD/Desktop/458167365_122114476502440631_3909178646921227669_n.jpg"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/image/store",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"store"
+							]
+						},
+						"description": "Endpoint para guardar una imagen en servidor\n\n**image** : Imagen a almacenar (Obligatorio, solo acepta archivos png y jpg).\n\n**return:** La información de la imagen guardada en la base de datos."
+					},
+					"response": []
+				},
+				{
+					"name": "Show Images",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI1NDAwMSwiZXhwIjoxNzI4MjU3NjAxLCJuYmYiOjE3MjgyNTQwMDEsImp0aSI6IjBlQ2EyRlZpVHJ5Wm5xSzQiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.WaUXhoZhmRA0OuzCiCmnipzWTYK0G6KwrFQPfkE1EU0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/image/show-images",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"show-images"
+							]
+						},
+						"description": "Endpoint para mostrar todas las imagenes del usuario.\n\n**return:** Una lista de todas las imagenes que pertenecen al usuario"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI1NDAwMSwiZXhwIjoxNzI4MjU3NjAxLCJuYmYiOjE3MjgyNTQwMDEsImp0aSI6IjBlQ2EyRlZpVHJ5Wm5xSzQiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.WaUXhoZhmRA0OuzCiCmnipzWTYK0G6KwrFQPfkE1EU0",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" : 12\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/image/get-image",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"get-image"
+							]
+						},
+						"description": "Endpoint para obtener la información de una imagen\n\n**id:** Id de la imagen (Obligatorio).\n\n**return:** La información de la imagen guardada en la base de datos."
+					},
+					"response": []
+				},
+				{
+					"name": "Download Image",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXBpL3B1YmxpYy9sb2dpbiIsImlhdCI6MTcyODI0MjM0MCwiZXhwIjoxNzI4MjQ1OTQwLCJuYmYiOjE3MjgyNDIzNDAsImp0aSI6IlQza2Nya2VpdXM0V1gzWHoiLCJzdWIiOiIxIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.44CiVB_CBuVPbLVekuRDWkRM8IOoBSSDa5ZtqvPFqbU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\" :1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:8000/api/image/download-image",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "8000",
+							"path": [
+								"api",
+								"image",
+								"download-image"
+							]
+						},
+						"description": "Endpoint para descargar la imagen\n\n**id: i**d de la imagen a descargar\n\n**return:** La imagen para descarga"
+					},
+					"response": []
+				}
+			],
+			"description": "Modulo de gestión de imagenes"
+		}
+	]
+}
