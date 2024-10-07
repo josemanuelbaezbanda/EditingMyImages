@@ -8,6 +8,7 @@ use App\Models\Image;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Interfaces\ImageInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Intervention\Image\ImageManager as InterventionImage;
 
@@ -33,7 +34,8 @@ class ResizeImagesService extends BaseService{
 
             $modifiedImage = $this->resize($oldPath, $width, $height);
             $newName = $this -> getNewName($image -> path .'/'. $image -> name );
-            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $width, $height);
+            $specsModifiers = $this -> setModifiersSize($width, $height);
+            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $specsModifiers);
 
             $response = Image::create([
                 'name' => $newName,
@@ -56,6 +58,13 @@ class ResizeImagesService extends BaseService{
         }
     }
 
+    /**
+     * Función para redimensionar la imagen
+     * @param string $path URL de la imagen
+     * @param int $width Anchura de la nueva imagen
+     * @param int $height Altura de la nueva imagen
+     * @return ImageInterface
+     */
     public function resize (string $path, int $width, int $height){
         $image = new InterventionImage (new Driver());
         return $image -> read(str_replace('/', '\\',$path)) -> resize($width, $height);

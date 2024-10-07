@@ -54,6 +54,7 @@ class ImageController extends Controller
 
 
     /**
+     * Descargar la imagen
      * @param Request $args
      * @return BinaryFileResponse
      */
@@ -61,17 +62,6 @@ class ImageController extends Controller
         $this -> request -> setRequest($args);
         $response = $this -> request -> downloadImage();
         return $this -> getDownloadResponse($response);
-    }
-
-    /**
-     * Subir una imagen al servidor local
-     *
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function resizeImage(Request $args) {
-        $this -> request -> setRequest($args);
-        $response = $this -> request -> resizeImage();
-        return $this -> getResponse($response);
     }
 
 }

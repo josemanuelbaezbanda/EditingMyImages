@@ -35,22 +35,38 @@ class ImageRequest extends BaseRequest{
         $this -> downloadImageCase = $downloadImageCase;
     }
 
+    /**
+     * Subir una imagen
+     * @return BaseResponse
+     */
     public function storeImage(): BaseResponse{
         $this -> applyRules(self::VALIDATE_STORE_IMAGE);
         $this -> storeImageCase -> setRequest($this -> getRequest());
         return $this -> storeImageCase -> apply() -> getResponse();
     }
 
+    /**
+     * Mostrar un listado de imagenes
+     * @return BaseResponse
+     */
     public function showImages(): BaseResponse{
         return $this -> showImagesCase -> apply() -> getResponse();
     }
 
+    /**
+     * Obtener la información de una imagen
+     * @return BaseResponse
+     */
     public function getImage(): BaseResponse{
         $this -> applyRules(self::VALIDATE_GET_IMAGE);
         $this -> getImageCase -> setRequest($this -> getRequest());
         return $this -> getImageCase -> apply() -> getResponse();
     }
 
+    /**
+     * Descargar imagenes
+     * @return BaseResponse
+     */
     public function downloadImage(): BaseResponse{
         $this -> applyRules(self::VALIDATE_DOWNLOAD_IMAGE);
         $this -> downloadImageCase -> setRequest($this -> getRequest());

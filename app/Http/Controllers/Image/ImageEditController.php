@@ -20,7 +20,7 @@ class ImageEditController extends Controller
     }
 
     /**
-     * Subir una imagen al servidor local
+     * Modificar el tamaño de una imagen ya guardada
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -31,7 +31,7 @@ class ImageEditController extends Controller
     }
 
     /**
-     * Subir una imagen al servidor local
+     * Ponerle un filtro a una imagen
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -42,7 +42,7 @@ class ImageEditController extends Controller
     }
 
     /**
-     * Subir una imagen al servidor local
+     * Mover una imagen
      *
      * @return \Illuminate\Http\JsonResponse
      */
@@ -53,7 +53,7 @@ class ImageEditController extends Controller
     }
 
     /**
-     * Subir una imagen al servidor local
+     * Ponerle texto a una imagen
      *
      * @return \Illuminate\Http\JsonResponse
      */

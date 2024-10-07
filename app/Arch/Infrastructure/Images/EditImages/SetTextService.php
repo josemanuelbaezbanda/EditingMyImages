@@ -11,9 +11,10 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
 use Intervention\Image\Interfaces\ImageInterface;
+use Intervention\Image\Typography\FontFactory;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
-class SetFilterService extends BaseService{
+class SetTextService extends BaseService{
     use ImageHelper;
 
     public function execute()
@@ -31,20 +32,18 @@ class SetFilterService extends BaseService{
 
             $oldPath = $image -> path .'/'. $image -> name;
             $editType = Arr::get($data, 'editType');
-            $red = Arr::get($data, 'red');
-            $green = Arr::get($data, 'green');
-            $blue = Arr::get($data, 'blue');
-            $pixelation = Arr::get($data, 'pixelation');
+            $text = Arr::get($data, 'text');
+            $xLocation = Arr::get($data, 'xLocation');
+            $yLocation = Arr::get($data, 'yLocation');
+            $size = Arr::get($data, 'size');
+            $color = Arr::get($data, 'color');
+            $stroke = Arr::get($data, 'stroke');
+            $lineHeight = Arr::get($data, 'lineHeight');
 
-            $modifiedImage = $this->setFilter($oldPath, $editType, $red, $green, $blue, $pixelation);
+            $modifiedImage = $this -> setText($oldPath, $text, $size, $color, $stroke, $lineHeight, $xLocation, $yLocation);
             $newName = $this -> getNewName($image -> path .'/'. $image -> name);
-            $specsModifiers = match($editType) {
-                AppConstant::FILTER_RGB_CODE => $this ->setModifiersRGB($red, $green, $blue),
-                AppConstant::FILTER_PIXELATION_CODE => $this ->setModifiersPixelation($pixelation),
-                default => AppConstant::NO_SPECS_MODIFICATIONS
-            };
-
-            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $specsModifiers);
+            $specsModifiers = $this ->setModifiersText($text, $size, $color, $stroke, $lineHeight, $xLocation, $yLocation);
+            $modifiers = $this ->setModifiers($editType, $specsModifiers);
 
             $response = Image::create([
                 'name' => $newName,
@@ -68,26 +67,28 @@ class SetFilterService extends BaseService{
     }
 
     /**
-     * Función para asignar un filtro
-     * @param string $path URL de la imagen que modificara
-     * @param int $filterType Tipo de filtro
-     * @param int $red Correccipón de color rojo
-     * @param int $green Correción de color verde
-     * @param int $blue Corrección de color azul
-     * @param int $pixelation Nivel de pixelación
-     * @return int|ImageInterface
+     * Función para agregar texto a una imagen
+     * @param string $path URL de la imagen a modificar
+     * @param string $text Texto que se agregara
+     * @param int $size Tamaño de la fuente de la letra
+     * @param string $color Color de la fuente de letra
+     * @param string $stroke Color del contorno de la letra
+     * @param int $lineHeight Tamaño del contorno de la letra
+     * @param int $xLocation Localizción en X del texto
+     * @param int $yLocation Localización en Y del texto
+     * @return ImageInterface
      */
-    public function setFilter (string $path, int $filterType , int $red , int $green , int $blue , int $pixelation){
+    public function setText(string $path, string $text, int $size, string $color, string $stroke, int $lineHeight, int $xLocation, int $yLocation){
         $image = new ImageManager(new Driver());
         $image = $image -> read (str_replace('/', '\\',$path));
 
-        return match($filterType){
-            AppConstant::FILTER_RGB_CODE => $image ->colorize($red, $green, $blue),
-            AppConstant::FILTER_NEGATIVE_CODE => $image -> invert(),
-            AppConstant::FILTER_BW_CODE => $image -> greyscale(),
-            AppConstant::FILTER_PIXELATION_CODE => $image ->pixelate($pixelation),
-            default => AppConstant::NOT_FOUND_VALUE
-        };
+        return $image -> text($text, $xLocation, $yLocation, function (FontFactory $font) use ($size, $color, $stroke, $lineHeight) {
+            $font -> filename(AppConstant::PATH_TO_FONT);
+            $font -> size($size);
+            $font -> color($color);
+            if (!$stroke == AppConstant::ZERO_VALUE) $font -> stroke($stroke);
+            if (!$lineHeight == AppConstant::ZERO_VALUE) $font -> lineHeight($lineHeight);
+        });
     }
 
 }

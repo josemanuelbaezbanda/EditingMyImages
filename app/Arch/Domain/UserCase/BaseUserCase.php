@@ -18,6 +18,7 @@ abstract class BaseUserCase {
     }
 
     /**
+     * Guardar una request
      * @param Request $request
      * @return $this
      */
@@ -27,6 +28,7 @@ abstract class BaseUserCase {
     }
 
     /**
+     * Devolver los atributos
      * @return array|null
      */
     public function getAttributes(): ?array {
@@ -34,6 +36,7 @@ abstract class BaseUserCase {
     }
 
     /**
+     * Poner los mensajes y la data que se envia al front
      * @param string $message
      * @param mixed $data
      * @return void
@@ -45,6 +48,7 @@ abstract class BaseUserCase {
 
 
     /**
+     * Poner la respuesta de descarga
      * @param string $path
      * @param string $filename
      * @return void
@@ -54,6 +58,7 @@ abstract class BaseUserCase {
     }
 
     /**
+     * Devolver respuesta
      * @return BaseResponse
      */
     public function getResponse() : BaseResponse {
@@ -61,6 +66,7 @@ abstract class BaseUserCase {
     }
 
     /**
+     * Devolver usuario del token
      * @return Authenticatable|null
      */
     public function getUser() : Authenticatable {

@@ -10,6 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\ImageManager;
+use Intervention\Image\Interfaces\ImageInterface;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class MoveImagerService extends BaseService{
@@ -35,7 +36,11 @@ class MoveImagerService extends BaseService{
             $modifiedImage = $this->moveImage($oldPath, $editType, $rotation);
             $newName = $this -> getNewName($image -> path .'/'. $image -> name);
 
-            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $rotation);
+            $specsModifiers = match($editType) {
+                AppConstant::ROTATE_IMAGE_CODE => $this -> setModifiersRotation($rotation),
+                default => AppConstant::NO_SPECS_MODIFICATIONS
+            };
+            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $specsModifiers);
 
             $response = Image::create([
                 'name' => $newName,
@@ -58,6 +63,13 @@ class MoveImagerService extends BaseService{
         }
     }
 
+    /**
+     * Función para mover la orientación de la imagen
+     * @param string $path URL de la imagen a modificar
+     * @param int $filterType Tipo de filtro
+     * @param int $rotation Angulo de rotación
+     * @return ImageInterface
+     */
     public function moveImage (string $path, int $filterType, int $rotation = 0){
         $image = new ImageManager(new Driver());
         $image = $image -> read (str_replace('/', '\\',$path));
