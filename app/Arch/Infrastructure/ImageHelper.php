@@ -21,6 +21,9 @@ trait ImageHelper
             AppConstant::FILTER_BW_CODE => "Greyscale Filter",
             AppConstant::FILTER_NEGATIVE_CODE => "Negative Filter",
             AppConstant::FILTER_PIXELATION_CODE => "Pixelation Filter",
+            AppConstant::MIRROR_MOVE_HORIZONTAL_CODE => "Mirror Horizontal Move",
+            AppConstant::MIRROR_MOVE_VERTICAL_CODE => "Mirror Vertical Move",
+            AppConstant::ROTATE_IMAGE_CODE => "Rotation Image",
             default => AppConstant::NOT_FOUND_VALUE
         };
     }
@@ -31,8 +34,9 @@ trait ImageHelper
             'Settings' => match ($typeEdit) {
                 AppConstant::RESIZE_CODE => $this -> setModifiersSize($intValueX, $intValueY),
                 AppConstant::FILTER_RGB_CODE => $this -> setModifiersRGB($intValueX, $intValueY, $intValueZ),
-                AppConstant::FILTER_NEGATIVE_CODE, AppConstant::FILTER_BW_CODE => self::DEFAULT_MODIFICATIONS,
-                AppConstant::FILTER_PIXELATION_CODE => $this -> setModifiersPixelation($intValueX)
+                AppConstant::FILTER_NEGATIVE_CODE, AppConstant::MIRROR_MOVE_HORIZONTAL_CODE, AppConstant::MIRROR_MOVE_VERTICAL_CODE, AppConstant::FILTER_BW_CODE => self::DEFAULT_MODIFICATIONS,
+                AppConstant::FILTER_PIXELATION_CODE => $this -> setModifiersPixelation($intValueX),
+                AppConstant::ROTATE_IMAGE_CODE => $this -> setModifiersRotation($intValueX),
             }
         ];
     }
@@ -54,6 +58,12 @@ trait ImageHelper
     public function setModifiersPixelation(int $pixelationLevel) : array{
         return[
             'level_of_pixelation' => $pixelationLevel
+        ];
+    }
+
+    public function setModifiersRotation(int $rotation) : array{
+        return[
+            'rotation' => $rotation
         ];
     }
 

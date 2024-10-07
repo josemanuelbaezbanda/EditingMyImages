@@ -16,4 +16,7 @@ class AppConstant {
     public const FILTER_NEGATIVE_CODE= 3;
     public const FILTER_BW_CODE= 4;
     public const FILTER_PIXELATION_CODE= 5;
+    public const MIRROR_MOVE_HORIZONTAL_CODE= 6;
+    public const MIRROR_MOVE_VERTICAL_CODE= 7;
+    public const ROTATE_IMAGE_CODE= 8;
 }
