@@ -30,4 +30,37 @@ class ImageEditController extends Controller
         return $this -> getResponse($response);
     }
 
+    /**
+     * Subir una imagen al servidor local
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setFilter(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> setFilter();
+        return $this -> getResponse($response);
+    }
+
+    /**
+     * Subir una imagen al servidor local
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function moveImage(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> moveImage();
+        return $this -> getResponse($response);
+    }
+
+    /**
+     * Subir una imagen al servidor local
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function setText(Request $args) {
+        $this -> request -> setRequest($args);
+        $response = $this -> request -> setText();
+        return $this -> getResponse($response);
+    }
+
 }

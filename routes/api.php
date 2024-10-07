@@ -32,6 +32,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 
         Route::prefix('edit')->group(function () {
             Route::post('resize', [ImageEditController::class, 'resizeImage']);
+            Route::post('set-filter', [ImageEditController::class, 'setFilter']);
+            Route::post('move-image', [ImageEditController::class, 'moveImage']);
+            Route::post('set-text', [ImageEditController::class, 'setFilter']);
         });
     });
 });

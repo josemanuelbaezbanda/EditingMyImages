@@ -2,16 +2,17 @@
 
 namespace App\Arch\Infrastructure\Images\EditImages;
 
+use App\Arch\Constants\AppConstant;
 use App\Arch\Infrastructure\BaseService;
 use App\Arch\Infrastructure\ImageHelper;
 use App\Models\Image;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\DB;
 use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use Intervention\Image\ImageManager as InterventionImage;
 
-class ResizeImagesService extends BaseService{
+class SetFilterService extends BaseService{
     use ImageHelper;
 
     public function execute()
@@ -28,12 +29,16 @@ class ResizeImagesService extends BaseService{
             }
 
             $oldPath = $image -> path .'/'. $image -> name;
-            $width = Arr::get($data, 'width');
-            $height = Arr::get($data, 'height');
+            $editType = Arr::get($data, 'editType');
+            $red = Arr::get($data, 'red');
+            $green = Arr::get($data, 'green');
+            $blue = Arr::get($data, 'blue');
+            $pixelation = Arr::get($data, 'pixelation');
 
-            $modifiedImage = $this->resize($oldPath, $width, $height);
-            $newName = $this -> getNewName($image -> path .'/'. $image -> name );
-            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $width, $height);
+            $modifiedImage = $this->setFilter($oldPath, $editType, $red, $green, $blue, $pixelation);
+            $newName = $this -> getNewName($image -> path .'/'. $image -> name);
+
+            $modifiers = $this -> setModifiers(Arr::get($data, 'editType'), $red, $green, $blue, $pixelation);
 
             $response = Image::create([
                 'name' => $newName,
@@ -56,9 +61,17 @@ class ResizeImagesService extends BaseService{
         }
     }
 
-    public function resize (string $path, int $width, int $height){
-        $image = new InterventionImage (new Driver());
-        return $image -> read(str_replace('/', '\\',$path)) -> resize($width, $height);
+    public function setFilter (string $path, int $filterType ,int $red , int $green , int $blue , int $pixelation){
+        $image = new ImageManager(new Driver());
+        $image = $image -> read (str_replace('/', '\\',$path));
+
+        return match($filterType){
+            AppConstant::FILTER_RGB_CODE => $image ->colorize($red, $green, $blue),
+            AppConstant::FILTER_NEGATIVE_CODE => $image -> invert(),
+            AppConstant::FILTER_BW_CODE => $image -> greyscale(),
+            AppConstant::FILTER_PIXELATION_CODE => $image ->pixelate($pixelation),
+            default => AppConstant::NOT_FOUND_VALUE
+        };
     }
 
 }
