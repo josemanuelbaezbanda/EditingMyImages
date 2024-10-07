@@ -29,7 +29,7 @@ INSTALACIÓN DE PHP Y COMPOSER
 
 1. Descarga PHP desde [php.net](https://www.php.net/downloads).
 2. Descargar XAMPP desde [apachefriends.org](https://www.apachefriends.org/es/download.html).
-2. Edita el archivo `php.ini` y habilita las siguientes extensiones (Puede encontrarlo desde la configuración de apache en la aplicación de XAMPP:
+2. Edita el archivo `php.ini` y habilita las siguientes extensiones (Puede encontrarlo desde la configuración de apache en la aplicación de XAMPP):
    ```ini
    extension=pdo_pgsql
    extension=openssl
@@ -60,7 +60,7 @@ CONFIGURACIÓN DEL REPOSITORIO
     ```ini
    DB_CONNECTION=pgsql
    DB_HOST=127.0.0.1
-   DB_PORT=5432
+   DB_PORT=tu_puerto_de_pgsql
    DB_DATABASE=EditingMyImages
    DB_USERNAME=tu_usuario
    DB_PASSWORD=tu_contraseña
@@ -101,7 +101,7 @@ Documentación de endpoint
 
 Para probar los endpoints de la API, utiliza la colección Postman:
 
-    El archivo de la colección EditingMyImages.postman_collection.json se encuentra en la carpeta public/docs/ del proyecto.
+    El archivo de la colección EditingMyImages.postman_collection.json se encuentra en la carpeta public/ del proyecto.
     Para importar este archivo en Postman:
         - Abre Postman.
         - Ve a File > Import.

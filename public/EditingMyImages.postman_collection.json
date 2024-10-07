@@ -274,7 +274,7 @@
 									}
 								},
 								"url": {
-									"raw": "http://127.0.0.1:8000/api/image/edit/set-text",
+									"raw": "http://127.0.0.1:8000/api/image/edit/move-image",
 									"protocol": "http",
 									"host": [
 										"127",

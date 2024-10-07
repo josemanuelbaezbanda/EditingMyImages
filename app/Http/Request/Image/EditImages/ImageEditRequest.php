@@ -24,14 +24,14 @@ class ImageEditRequest extends BaseRequest{
     private const VALIDATE_MOVE_IMAGE = [
         'id' => 'required|numeric',
         'filter' => 'required|int|in:6,7,8',
-        'rotation' => 'int|required_if:filter,8|min:1|max:360',
+        'rotation' => 'int|required_if:filter,8|min:0|max:360',
     ];
     private const VALIDATE_SET_FILTER = [
         'id' => 'required|numeric',
         'filter' => 'required|int|in:2,3,4,5',
-        'red' => 'sometimes|required_if:filter,2|required_without_all:green,blue|int|min:1',
-        'green' => 'sometimes|required_if:filter,2|required_without_all:red,blue|int|min:1',
-        'blue' => 'sometimes|required_if:filter,2|required_without_all:red,green|int|min:1',
+        'red' => 'sometimes|required_if:filter,2|required_without_all:green,blue|int|min:0',
+        'green' => 'sometimes|required_if:filter,2|required_without_all:red,blue|int|min:0',
+        'blue' => 'sometimes|required_if:filter,2|required_without_all:red,green|int|min:0',
         'pixel_level' => 'int|required_if:filter,5|min:1',
     ];
 
